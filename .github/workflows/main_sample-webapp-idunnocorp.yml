@@ -36,7 +36,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: .net-app
-          path: ${{github.workspace}}/published_app
+          path: ${{ github.workspace }}/published_app
 
   deploy:
     runs-on: windows-latest
@@ -67,4 +67,4 @@ jobs:
         with:
           app-name: 'sample-webapp-idunnocorp'
           slot-name: 'Production'
-          package: ${{github.workspace}}/published_app
+          package: ${{ github.workspace }}/published_app
