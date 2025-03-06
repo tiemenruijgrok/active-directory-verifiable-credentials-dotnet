@@ -27,16 +27,16 @@ jobs:
         run: ls -R ${{ github.workspace }}
 
       - name: Build with dotnet
-        run: dotnet build "${{ github.workspace }}\1-asp-net-core-api-idtokenhint\AspNetCoreVerifiableCredentials.csproj" --configuration Release
+        run: dotnet build "${{ github.workspace }}/1-asp-net-core-api-idtokenhint/AspNetCoreVerifiableCredentials.csproj" --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish "${{ github.workspace }}\1-asp-net-core-api-idtokenhint\AspNetCoreVerifiableCredentials.csproj" -c Release -o "${{ github.workspace }}\published_app"
+        run: dotnet publish "${{ github.workspace }}/1-asp-net-core-api-idtokenhint/AspNetCoreVerifiableCredentials.csproj" -c Release -o "${{ github.workspace }}/published_app"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: .net-app
-          path: ${{ github.workspace }}\published_app
+          path: ${{ github.workspace }}/published_app
 
   deploy:
     runs-on: windows-latest
@@ -67,4 +67,4 @@ jobs:
         with:
           app-name: 'sample-webapp-idunnocorp'
           slot-name: 'Production'
-          package: ${{ github.workspace }}\published_app
+          package: ${{ github.workspace }}/published_app
