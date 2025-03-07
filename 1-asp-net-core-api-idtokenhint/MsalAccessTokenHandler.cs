@@ -40,8 +40,9 @@ namespace AspNetCoreVerifiableCredentials {
             string clientId = configuration.GetValue( "VerifiedID:ClientId", configuration["AzureAd:ClientId"] );
             string authority = configuration.GetValue("VerifiedID:Authority", configuration.GetValue("AzureAd:Authority", "https://login.microsoftonline.com/{tenant}/v2.0/" ) );
             authority = authority.Replace("{tenant}", tenantId);
-            string clientSecret = configuration.GetValue( "VerifiedID:ClientSecret", configuration.GetValue( "AzureAd:ClientSecret", "" ) );
+            string clientSecret = Environment.GetEnvironmentVariable("AZURE_CLIENT_SECRET", configuration.GetValue( "AzureAd:ClientSecret", "" ) );
 
+            //configuration.GetValue( "VerifiedID:ClientSecret"
             // Since we are using application permissions this will be a confidential client application
             IConfidentialClientApplication app;
             if (!string.IsNullOrWhiteSpace( clientSecret )) {
