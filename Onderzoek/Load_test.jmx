@@ -1,0 +1,28 @@
+{
+    "callback": {
+        "url": "{REPLACE-WITH-URL}",
+        "state": "{REPLACE-WITH-STATE}",
+        "headers": {
+            "api-key": "{REPLACE-WITH-API-KEY}"
+        }
+    },
+    "authority": "did:web:idunnocorpstorage.z6.web.core.windows.net",
+    "registration": {
+        "clientName": "{REPLACE-WITH-CLIENT-NAME}"
+    },
+    "type": "IDunnoExpert",
+    "manifest": "https://verifiedid.did.msidentity.com/v1.0/tenants/4dfff9e5-3a02-4c82-b51c-d598cd373bb0/verifiableCredentials/contracts/7f29ce0c-03fe-cbf3-e318-93a0f18a150e/manifest"
+}
+
+{
+    "callback": {
+        "url": "${callbackUrl}",
+        "state": "loadtest"
+    },
+    "authority": "did:web:idunnocorpstorage.z6.web.core.windows.net",
+    "registration": {
+        "clientName": "${clientName}"
+    },
+    "type": "IDunnoExpert",
+    "manifest": "https://verifiedid.did.msidentity.com/v1.0/tenants/4dfff9e5-3a02-4c82-b51c-d598cd373bb0/verifiableCredentials/contracts/7f29ce0c-03fe-cbf3-e318-93a0f18a150e/manifest"
+}
