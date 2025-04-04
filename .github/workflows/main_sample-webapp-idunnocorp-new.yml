@@ -23,17 +23,20 @@ jobs:
         with:
           dotnet-version: '8.x'
 
+      - name: Debugging - Toon repository structuur
+        run: ls -R ${{ github.workspace }}
+
       - name: Build with dotnet
-        run: dotnet build --configuration Release
+        run: dotnet build "${{ github.workspace }}/2-asp-net-core-api-user-signin/AspNetCoreVerifiableCredentials.csproj" --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
+        run: dotnet publish "${{ github.workspace }}/2-asp-net-core-api-user-signin/AspNetCoreVerifiableCredentials.csproj" -c Release -o "${{ github.workspace }}/published_app"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          path: ${{ github.workspace }}/published_app
 
   deploy:
     runs-on: windows-latest
@@ -50,6 +53,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: .net-app
+          path: ${{ github.workspace }}/published_app
       
       - name: Login to Azure
         uses: azure/login@v2
@@ -64,5 +68,5 @@ jobs:
         with:
           app-name: 'sample-webapp-idunnocorp-new'
           slot-name: 'Production'
-          package: .
+          package: ${{ github.workspace }}/published_app
           
