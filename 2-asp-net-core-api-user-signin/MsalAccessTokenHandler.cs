@@ -20,7 +20,7 @@ namespace AspNetCoreVerifiableCredentials {
         }
 
         public static async Task<(string token, string error, string error_description)> GetAccessToken( IConfiguration configuration) {
-            // You can run this sample using ClientSecret or Certificate. The code will differ only when instantiating the IConfidentialClientApplication
+            // You can run this sample using ClientSecret or Certificate.. The code will differ only when instantiating the IConfidentialClientApplication
             string tenantId = configuration.GetValue("VerifiedID:TenantId", configuration["AzureAd:TenantId"]);
             string authority = $"{configuration["VerifiedID:Authority"]}{tenantId}";
             string clientId = configuration.GetValue( "VerifiedID:ClientId", configuration["AzureAd:ClientId"] );
